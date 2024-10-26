@@ -1,6 +1,6 @@
 /*
 	video: https://www.youtube.com/watch?v=tEBufGSmzAY&list=PLTcOzxm2NcYBBAZC-Ya_xqZ_eZ8i0o9NC&index=5&ab_channel=RobertoMorais
-	minuto: 4:27
+	minuto: 5:45
 */
 
 // package main
@@ -34,7 +34,7 @@
 // --------------------------------------------------------------------------------------
 
 // CHANNELS o CANALES
-
+/*
 package main
 
 import (
@@ -50,4 +50,16 @@ func main() {
 	msg := <-messages
 	fmt.Println(msg) // Muestro el canal "messages"
 	// que se instancia en la linea 50
+}
+*/
+
+package main
+
+import "fmt"
+
+func main() {
+	messages := make(chan string, 2)
+	messages <- "Hola"
+	messages <- "Golang"
+	fmt.Println(<-messages)
 }
