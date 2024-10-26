@@ -52,14 +52,37 @@ func main() {
 	// que se instancia en la linea 50
 }
 */
+/* EJEMPLO SENCILLO */
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	messages := make(chan string, 2) // Crear un canal con dos buffers, es decir 2 slots para guardar STRINGS
+// 	messages <- "Hola"
+// 	messages <- "Golang"
+// 	fmt.Println(<-messages) // Output: Hola
+// 	fmt.Println(<-messages) // Output: Golang
+// }
+
+/* EJEMPLO MÁS AVANZADO */
 
 package main
 
-import "fmt"
+import (
+	"time"
+	"fmt"
+)
+
+func worker(id int, jobs <-chan int, results chan<- int) {
+	for j := range jobs{
+		fmt.Printf("Trabajador %d empezó trabajo %d\n", id, j)
+		time.Sleep(time.Second)
+		fmt.Printf("Trabajador %d terminó trabajo %d\n", id, j)
+		results <- j * 2
+	}
+}
 
 func main() {
-	messages := make(chan string, 2)
-	messages <- "Hola"
-	messages <- "Golang"
-	fmt.Println(<-messages)
+
 }
