@@ -91,12 +91,77 @@ func main() {
 }
 */
 
+// FUNCIONES PANIC - RECOVER
+
+/*
 package main
 
 import (
-	// "fmt"
+	"fmt"
 )
 
-func main() {
+func causePanic() {
+	panic("Algo salió muy mal")
+}
 
+func main() {
+	fmt.Println("Antes del panic")
+	causePanic()
+	fmt.Println("Esto no se imprimirá por consola")
+}
+*/
+
+// RECOVER (Recuperar una goroutine que entra en panico)
+// Solo es util en funciones diferidas.
+
+/*
+package main
+
+import (
+	"fmt"
+)
+
+func handlePanic() {
+	if r := recover(); r != nil {
+		fmt.Println("Recuperado el panic", r)
+	}
+}
+
+func riskyFunc() {
+	defer handlePanic()
+	panic("Se paró el programa inesperadamente..")
+}
+
+func main() {
+	fmt.Println("Antes de la función riesgosa")
+	riskyFunc()
+	fmt.Println("Después de la función riesgosa.")
+}
+*/
+
+// --- TESTING ---
+
+package main
+
+import (
+	"errors"
+	"fmt"
+)
+
+func divide(a, b float64) (float64, error) {
+	if b == 0 {
+		return 0, errors.New("No se puede dividir por 0.")
+	}
+
+	return a / b, nil
+}
+
+func main() {
+	result, err := divide(10,0)
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("El resultado es:", result)
 }
