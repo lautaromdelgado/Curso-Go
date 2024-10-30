@@ -1,5 +1,6 @@
 // Video: https://www.youtube.com/watch?v=fNhIkLnEb44&list=PLTcOzxm2NcYBBAZC-Ya_xqZ_eZ8i0o9NC&index=9&ab_channel=RobertoMorais
 // Minuto 7:12
+
 package main
 
 import (
@@ -186,9 +187,9 @@ func main() {
 	// Crear un registro
 	// db.Create(&Cliente{Nombre: "Yair", Apellido: "Escobar", Email: "ivanescobargg@gmail.com"})
 	// Leer un registro
-	var clientes string
-	db.First(&clientes, 1) // Busca por ID
-	fmt.Println(clientes)
+	var Email Cliente
+	db.First(&Email, 1) // Busca por ID
+	fmt.Println(Email)
 	// Actualizar un registro
 	// db.Model(&usuario).Update("Nombre", "Iván")
 	// Eliminar un registro
